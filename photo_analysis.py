@@ -10,7 +10,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PIL import Image
 import exifread 
 
-tags = []
 normal = []
 faketime = []
 fakesize = []
@@ -70,7 +69,6 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.pushButton.clicked.connect(self.pushButtonEvt)
-    #    print("faketime: "+str(faketime))
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         self.comboBox.addItem('<분 류>')
@@ -86,7 +84,7 @@ class Ui_MainWindow(object):
         self.pushButton.setText(_translate("MainWindow", "분석"))
 
     def pushButtonEvt(self, MainWindow):
-        global tags, normal, faketime, fakesize
+        global normal, faketime, fakesize
         self.textEdit.clear()
         filepath = self.lineEdit.text()
         pixmap = QtGui.QPixmap(filepath)
@@ -118,12 +116,7 @@ class Ui_MainWindow(object):
 
     
     def onActivated(self, index):
-    #    global normal, faketime, fakesize
         self.textEdit_2.clear()
-        print("fakesize : "+str(fakesize))
-        print("faketime : "+str(faketime))
-        print("normal : "+str(normal))
-#        if index == "<분 류>:
 
         if index == "크기 위조된 파일":
             if fakesize:
@@ -152,4 +145,3 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-
